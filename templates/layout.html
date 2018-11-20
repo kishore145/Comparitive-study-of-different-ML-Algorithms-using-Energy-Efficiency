@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://html5-templates.com/" />
+    <title>Project Energy</title>
+    <meta name="description" content="Simple HTML5 Page layout template with header, footer, sidebar etc.">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <!-- Leaflet CSS Boilerplate -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+        integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+        crossorigin=""></script>
+    <!-- D3 -->
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+
+</head>
+
+<body>
+	<header>
+        <div id="logo"><img src="../static/images/flash.svg"><u><strong>PROJECT ENERGY</strong></u></div>
+		<nav>  
+			<ul>
+				<li><a href="/">Dashboard</a>
+				<li><a href="/methodology">Our Methodology</a>
+				<li><a href="/datatable">Data Table</a>
+				<li><a href="/aboutus">About Us</a>
+			</ul>
+		</nav>
+    </header>
+    
+    {% block content%}
+    {% endblock %}
+
+	<footer>
+		<p> Website Template Inspired by | <a href="https://html5-templates.com/" target="_blank" rel="nofollow">HTML5 Templates</a></p>
+	</footer>	
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+    <section id='pageContent'>
+        <h1>OUR METHODOLOGY</h1>
+        <hr>
+        <h2>Project Structure</h2>
+        <br>
+        <ol class="mylist">
+            <li>Types of Properties: New & Old</li>
+                
+            <li>Data Analysis: implementing deep data analysis that takes enormous amount of data and uses it as the basis for actionable, customized insights. Collecting big amount of data, using different kinds of data which can help to improve construction process from the energy efficiency perspective</li>
+
+            <li>Cluster Analysis:cluster analysis to assess and predict the cooling and heating system and understand the patterns of energy usage and heat transfer as well as characteristics of building structures, operations, and occupant behavior that influence energy consumption. Begin by inspecting the first few rows of the BlocPower data. Each row has the following columns: </li>
+
+            <li>
+                Predictive Model: The use of model predictive control together with weather and occupancy predictions is an effective approach for achieving significant energy savings.
+                <img src="/static/images/heatmap.png">
+            </li>
+               
+
+            <li>Data Cleaning:Formatting, renaming and resetting values. For example, define functions to convert kWh values to actual numbers, to calculate the age of a building based on the year the building was constructed, to remove commas in returned values, and to interpret missing values in the PLEI columns as meaning that there is no plugged-in equipment. </li>
+                
+
+            <li>Data Exploration: We can have a look on the data distribution of data from DataFrame using the distribution plot of seaborn, a Python library for making statistical visualizations.Using seaborn, we plot pairwise relationships in our DataFrame with the 'pairplot' function.By default, this function will create a grid of Axes such that each variable in data will by shared in the y-axis across a single row and in the x-axis across a single column. The diagonal Axes are treated differently, drawing a plot to show the univariate distribution of the data for the variable in that column. To explore the correlations between energy usage and building characteristics </li>
+
+            <li>Data Table: Set of Data for analysis that will best support energy efficiency outcome. </li> 
+                 
+
+                                 
+        </ol>
+        <h2>Assumptions</h2>
+        
+        <img src="/static/images/linearregression.png">
+        <br>
+            <ul class='mylist'>
+                <li>Property Type: New & Old</li>
+                <li>Age of the property: Based on year of construction</li>
+                <li>No. of Stories: units</li>
+                <li>No. of Bedrooms, Living room and windows</li>
+                <li>Area: square foot </li>
+                <li>Price Range: starting from $0</li>
+                <li>No. of Plugged Outlets</li>
+                <li>Electricity usage: KW/h</li>
+
+            </ul>
+        <h2>Limitations</h2>
+        <br>
+            <ul style='margin-left:5em'>
+                <li>Weather: Temperature measurement and season</li>
+                <li>Independent Variables</li>
+            </ul>
+    </section>
+
+
+
+{% endblock content%}

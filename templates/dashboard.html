@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+  
+	<section id='pageContent'>
+		<h1>Dashboard</h1>
+		<br>
+		<h4>Click a circle! Each circle represents a property from our dataset. The graph on the right shows the property's relationship to the average of select metrics.</h4>
+		<hr>
+		<main>
+			<div id="viz1" style="float: left; width: 45%; height: 450px;"></div>
+			
+			<div id="viz2" style="float: right; width: 55%;  background-color: white;" ></div>
+
+			<div id="viz3" style="float: down; width: 45%; height: 450px;"></div>
+
+		</main>
+		<div>
+			<img src="../static/images/map_legend.PNG" width="300px" height="100px">
+			<!-- <img src="../static/images/graph1_legend.PNG" width="300px" height="70px" align="right" > -->
+		</div>
+		<hr>
+		<div>
+			<!-- <h2>Graph 2</h2> -->
+			<div class="viz" id="viz3" style="float: left" >
+
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</section>
+
+	<!-- D3 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+
+	<!-- Leaflet JavaScript -->
+	<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+
+	<!-- leaflet API Key -->
+	<script type="text/javascript" src="static/js/config.js"></script>
+
+	<!-- Plotly -->
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	
+	<!-- viz1 and viz2 JavaScript -->
+	<script type="text/javascript" src="static/js/viz1logic.js"></script>
+	<script type="text/javascript" src="static/js/viz2logic.js"></script>
+
+
+{% endblock content%}

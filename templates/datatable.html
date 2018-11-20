@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <section id='pageContent'>
+        <h1>Set of Data for analysis that will predict the best energy efficiency outcome.</h1>
+        <!-- <div id='debug'></div> -->
+        <div id='dataTable'>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>AC_consumption</th>
+                        <th>Age</th>
+                        <th>Domestic_gas</th>
+                        <th>Total_energy_consumption</th>
+                        <th>Heating_gas</th>
+                        <th>Index</th>
+                        <th>Number_stories</th>
+                        <th>PLEI_1</th>
+                        <th>PLEI_3</th>
+                        <th>Plug_load_consumption</th>
+                        <th>Square_feet</th>
+                    </tr>
+                </thead>
+                <tbody id="tdb">
+                   
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+
+    <!-- JS -->
+    <script type="text/javascript" src="static/js/datatable.js"></script>
+    <script type="text/javascript" src="static/js/data.js"></script> 
+    
+    
+{% endblock content%}
