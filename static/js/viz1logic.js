@@ -143,7 +143,13 @@ function createMarkers(response) {
   }
   var markerLayers =[];
   for(i = 0; i<=5; i++) {
-    markerLayers.push(L.featureGroup(propertyMarkers[i]));
+    markerLayers.push(L.featureGroup(propertyMarkers[i])
+    .on('click', function(event) { 
+      console.log(event);
+      seti(event.layer.index); 
+    })
+    
+    );
   }
   // Create a layer group made from the property markers array, pass it into the createMap function
   createMap(markerLayers);
