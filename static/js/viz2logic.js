@@ -56,7 +56,7 @@ function seti(index) {
     };
     //console.log(trace1);
     traces = [trace1, trace2];
-  Plotly.newPlot('viz2', traces,layout);
+  //Plotly.newPlot('viz2', traces,layout);
 }
 
 function graph2(response) {
@@ -105,7 +105,7 @@ function graph2(response) {
   };
   //console.log(trace1);
   traces = [trace1, trace2];
-Plotly.newPlot('viz2', traces,layout);
+//Plotly.newPlot('viz2', traces,layout);
 }
-d3.json('/data', graph2);
-Plotly.newPlot('viz2', data);
+//d3.json('/data', graph2);
+//Plotly.newPlot('viz2', data);

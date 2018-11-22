@@ -2,19 +2,36 @@
 // Create a Leaflet map with markers marking each location from the json
 
 function createMap(properties) {
+  // Create the tile layer that will be the background of our map
+  var lightmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}", {
+  attribution: "Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"http://mapbox.com\">Mapbox</a>",
+  maxZoom: 18,
+  id: "mapbox.light",
+  accessToken: API_KEY
+  });
 
-  // Leaflet boilerplate
-  var streetmap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
     maxZoom: 18,
-    id: 'mapbox.streets',
-    // Darrin's api key
-    accessToken: API_KEY
+    subdomains:['mt0','mt1','mt2','mt3']
+  });
+
+  googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 18,
+    subdomains:['mt0','mt1','mt2','mt3']
+  });
+
+  googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
   });
 
   var baseMaps = {
-    "Street Map": streetmap
-  };
+    "Base World Map" : lightmap,
+    "Satellite": googleSat,
+    "Google Street" : googleStreets,
+    "Terrain": googleTerrain
+  
+    };
 
   var overlayMaps = {
     "Properties": properties
@@ -23,102 +40,88 @@ function createMap(properties) {
   // Grab the div id and insert all the layers
   var map = L.map("viz1", {
     center: [40.73, -74.0059],
-    zoom: 9,
-    layers: [streetmap, properties]
+    zoom: 10,
+    layers: [lightmap, properties]
   });
 
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
-  })
-  .addTo(map)
-  ;
+  }).addTo(map);
+
+  var legend = L.control({position: 'bottomright'});
+
+  legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 20, 30, 40, 50, 60, 70, 80, 90],
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+legend.addTo(map);
+
+}
+
+function getColor(d) {
+  return d > 90 ? '#a50026' :
+         d > 80  ? '#d73027' :
+         d > 70  ? '#f46d43' :
+         d > 60  ? '#fdae61' :
+         d > 50   ? '#fee08b' :
+         d > 40   ? '#d9ef8b' :
+         d > 30 ? '#a6d96a' :
+         d > 20  ? '#66bd63' :
+         d > 10  ? '#1a9850' :
+                    '#006837';
 }
 
 function createMarkers(response) {
 
   // Initialize an array to hold property markers
   var propertyMarkers = [];
+  console.log(response);
 
-  // Define different colored icons
-  var redIcon = L.icon({
-    iconUrl: '/static/images/red_circle.svg',
-    iconSize: [20, 20], // size of the icon
-  });
-
-  var yellowIcon = L.icon({
-    iconUrl: '/static/images/yellow_circle.svg',
-    iconSize: [20, 20], // size of the icon
-  });
-
-  var greenIcon = L.icon({
-    iconUrl: '/static/images/green_circle.svg',
-    iconSize: [20, 20], // size of the icon
-  });
-
-  var blackIcon = L.icon({
-    iconUrl: '/static/images/black_circle.svg',
-    iconSize: [20, 20], // size of the icon
-  });
-
+  
 
   // Loop through the datajson
   for (var index = 0; index < response.length; index++) {
     var location = response[index];
-    var propertyMarker;
-
-    // For each location, create a marker and bind a popup 
-    switch (true) {
-      case (location.energy > 4000000):
-        propertyMarker = L.marker([location.Lat, location.Long]
-          , {icon: blackIcon}
-          )
-          .bindPopup("<h3> Energy_Consumption: " + location.energy + " kWh </h3><h3> Age: " + location.age + " years </h3><h3> # of Stories: " + location.number_stories + "</h3><h3> Square Ft: " +location.square_feet+"</h3>"
-          );
-      break;
-
-      case (location.energy < 4000000 && location.energy > 40000):
-        propertyMarker = L.marker([location.Lat, location.Long]
-          , {icon: redIcon}
-          )
-          .bindPopup("<h3> Energy_Consumption: " + location.energy + " kWh </h3><h3> Age: " + location.age + " years </h3><h3> # of Stories: " + location.number_stories + "</h3><h3> Square Ft: " +location.square_feet+"</h3>"
-          );
-        break;
-
-      case (location.energy < 40000 && location.energy >= 12650):
-        propertyMarker = L.marker([location.Lat, location.Long]
-          , { icon: yellowIcon })
-          .bindPopup("<h3> Energy_Consumption: " + location.energy + " kWh </h3><h3> Age: " + location.age + " years </h3><h3> # of Stories: " + location.number_stories + "</h3><h3> Square Ft: " +location.square_feet+"</h3>"
-          );
-          break;
-
-      case (location.energy < 12650):
-        propertyMarker = L.marker([location.Lat, location.Long]
-          , { icon: greenIcon })
-          .bindPopup("<h3> Energy_Consumption: " + location.energy + " kWh </h3><h3> Age: " + location.age + " years </h3><h3> # of Stories: " + location.number_stories + "</h3><h3> Square Ft: " +location.square_feet+"</h3>"
-          );
-        break;
-
-      default:
-        propertyMarker = L.marker([location.Lat, location.Long]
-          , { icon: blackIcon })
-          .bindPopup("<h3> Energy_Consumption: " + location.energy + " kWh </h3><h3> Age: " + location.age + " years </h3><h3> # of Stories: " + location.number_stories + "</h3><h3> Square Ft: " +location.square_feet+"</h3>"
-          );
-        break;
-
-    }
-    // Binding index value to the marker for use in graph 1 to obtain the data element that was clicked
-    propertyMarker.index = location.index;
     
-    // Add the marker to the propertyMarkers array
-    propertyMarkers.push(propertyMarker);
+    console.log([location.Latitude, location.Longitude,
+      location["Electricity Use - Grid Purchase (kBtu)"],
+      location["Property Id"]],
+      location["ENERGY STAR Score"]
+      );
 
-  }
+      var circle = L.circle([location.Latitude, location.Longitude], {
+        color: 'black' ,
+        weight: 1,
+        opacity: 0.7,
+        fillColor: getColor(location["ENERGY STAR Score"]),
+        fillOpacity: 0.7,
+        radius: 500
+      });
+      circle.bindPopup(location["Property Name"]);
+      propertyMarkers.push(circle);
+    
+    // Binding index value to the marker for use in graph 1 to obtain the data element that was clicked
+    circle.index = location["Property Id"];
+    
+    }
 
   // Create a layer group made from the property markers array, pass it into the createMap function
   createMap(L.featureGroup(propertyMarkers)
   .on('click', function(event) { 
-    // console.log(event);
-    seti(event.layer.index); 
+    console.log(event);
+    
   })
   );
 }
