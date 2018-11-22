@@ -36,12 +36,9 @@ class DfEnergy(db.Model):
 def energy_data():
 
     # query for the energy data using pandas
-    query_statement = db.session.query(DfEnergy).\
-        order_by(DfEnergy.index.desc()).\
-        statement 
-    df = pd.read_sql_query(query_statement, db.session.bind)
-
-    return jsonify(df.to_dict(orient='records'))
+    df = pd.read_csv('cleaned_data.csv')
+    #print(df.to_json(orient='records'))
+    return df.head(10).to_json(orient='records')
 
 @app.route('/')
 def dashboard():
