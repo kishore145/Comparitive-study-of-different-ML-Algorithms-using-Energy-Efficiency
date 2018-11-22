@@ -13,7 +13,10 @@ function seti(index) {
   function graph1(response) {
     // Loop through the data
     var trace1 = {};
-    sum = {"ac_consumption": 0, "domestic_gas": 0, "heating_gas": 0, "plug_load_consumption": 0};
+    sum = {"ENERGY STAR Score": 0, 
+       "ENERGY STAR Score LR": 0,
+       "ENERGY STAR Score ML2": 0,
+       "plug_load_consumption": 0};
     
     data = {};
     

@@ -36,7 +36,7 @@ class DfEnergy(db.Model):
 def energy_data():
 
     # query for the energy data using pandas
-    df = pd.read_csv('cleaned_data.csv')
+    df = pd.read_csv('dummy_data_for_frontend.csv')
     #print(df.to_json(orient='records'))
     return df.head(10).to_json(orient='records')
 
