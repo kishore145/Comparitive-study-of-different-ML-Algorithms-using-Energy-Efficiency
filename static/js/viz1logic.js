@@ -126,6 +126,9 @@ function createMarkers(response) {
       location["Property Id"]],
       location["ENERGY STAR Score"]
       );
+    if(!location.Latitude || !location.Longitude) {
+      continue;
+    }
     for(i =0;i<=5;i++) {
       circle[i] = L.circle([location.Latitude, location.Longitude], {
         color: 'black' ,

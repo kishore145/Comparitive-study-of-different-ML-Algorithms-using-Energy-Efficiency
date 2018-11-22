@@ -38,7 +38,7 @@ def energy_data():
     # query for the energy data using pandas
     df = pd.read_csv('dummy_data_for_frontend.csv')
     #print(df.to_json(orient='records'))
-    return df.head(10).to_json(orient='records')
+    return df.to_json(orient='records')
 
 @app.route('/')
 def dashboard():
