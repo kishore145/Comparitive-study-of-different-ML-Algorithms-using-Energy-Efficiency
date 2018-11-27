@@ -56,6 +56,10 @@ def methodology():
 def aboutus():
     return render_template('aboutus.html')
 
+@app.route('/predictive-model')
+def pmodel():
+    return render_template('pmodel.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 

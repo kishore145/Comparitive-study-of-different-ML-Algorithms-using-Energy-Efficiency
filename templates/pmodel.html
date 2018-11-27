@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section id='pageContent'>
+    <div class="slidecontainer" id="slider1">
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange1">
+    </div>
+    <div class="slidecontainer" id="slider2">
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange2">
+    </div>
+    <div class="slidecontainer" id="slider3">
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange3">
+    </div>
+    <div class="slidecontainer" id="slider4">
+        <input type="range" min="1" max="10" value="5" class="slider" id="myRange4">
+    </div>
+    <div class="slidecontainer" id="slider5">
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange5">
+    </div>
+    <div>
+        YOUR PREDICTED ENERGY SCORE IS
+    </div>
+    <div id="text">
+    </div>
+    <script type="text/javascript" src="static/js/pmodel.js"></script>
+</section>
+
+{% endblock content%}
