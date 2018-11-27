@@ -68,7 +68,10 @@ function createMap(markerLayers) {
 
   legend.addTo(map);
 
-  L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);
+  L.control.layers(baseMaps, {collapsed: false}).addTo(map);
+
+  
+
   //L.control.layers(overlayMaps).addTo(map);
   
   
