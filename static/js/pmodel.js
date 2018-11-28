@@ -6,12 +6,12 @@
     model.compile({ loss: 'meanSquaredError', optimizer: 'sgd' });
 
     // // // Generate some synthetic data for training.
-    const xs = tf.tensor2d([1, 2, 3, 4], [4, 5]);
+    const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
     const ys = tf.tensor2d([1, 2, 3, 4], [4, 1]);
 
     // Train the model using the data.
-    model.fit(xarray, ystar, { epochs: 100 })
-
+    model.fit(xs, ys, { epochs: 100 })
+    // model.fit(xarray, ystar, { epochs: 100 })
 
 // SLIDERS
     var slider1 = document.getElementById("myRange1");
@@ -20,10 +20,13 @@
     var slider4 = document.getElementById("myRange4");
     var slider5 = document.getElementById("myRange5");
 
-    // Update the current slider values (each time you drag the slider handle)
+    // Update the PREDICTED ENERGY STAR SCORE (each time you drag the slider handle)
+    var text = document.getElementById("text");
+
     slider1.oninput = function () {
         const svalue1 = model.predict(tf.tensor2d([this.value], [1, 1]));
-        text.innerHTML = svalue1.dataSync()[0];
+        text.innerHTML = svalue1.dataSync()[0]
+        console.log(text.innerHTML)
     }
 
     slider2.oninput = function () {
@@ -46,4 +49,4 @@
         text.innerHTML = svalue5.dataSync()[0];
     }
 
-var text = document.getElementById("text");
+

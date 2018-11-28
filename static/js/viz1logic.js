@@ -134,12 +134,12 @@ function createMarkers(response) {
     }
     for(i =0;i<=5;i++) {
       circle[i] = L.circle([location.Latitude, location.Longitude], {
-        color: 'black' ,
-        weight: 1,
+        color: 'black' , 
+        weight: 0.1,
         opacity: 0.7,
         fillColor: findScore(i, location),
         fillOpacity: 0.7,
-        radius: 500
+        radius: 100
       });
       circle[i].bindPopup(location["Property Name"]);
       // Binding index value to the marker for use in graph 1 to obtain the data element that was clicked
@@ -152,7 +152,8 @@ function createMarkers(response) {
     markerLayers.push(L.featureGroup(propertyMarkers[i])
     .on('click', function(event) { 
       console.log(event);
-      seti(event.layer.index); 
+      seti(event.layer.index);
+     
     })
     
     );
