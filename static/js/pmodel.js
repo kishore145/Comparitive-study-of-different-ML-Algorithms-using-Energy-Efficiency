@@ -5,12 +5,13 @@
     // Prepare the model for training: Specify the loss and the optimizer.
     model.compile({ loss: 'meanSquaredError', optimizer: 'sgd' });
 
-    // Generate some synthetic data for training.
-    const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
+    // // // Generate some synthetic data for training.
+    const xs = tf.tensor2d([1, 2, 3, 4], [4, 5]);
     const ys = tf.tensor2d([1, 2, 3, 4], [4, 1]);
 
     // Train the model using the data.
-    model.fit(xs, ys, { epochs: 100 })
+    model.fit(xarray, ystar, { epochs: 100 })
+
 
 // SLIDERS
     var slider1 = document.getElementById("myRange1");
