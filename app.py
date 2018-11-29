@@ -4,7 +4,9 @@ import sqlite3
 import csv 
 import json
 import pandas as pd
+import numpy as np
 
+from keras.models import load_model as LM
 
 app = Flask(__name__)
 
@@ -59,6 +61,15 @@ def aboutus():
 @app.route('/predictive-model')
 def pmodel():
     return render_template('pmodel.html')
+
+@app.route('/python-model')
+def pymodel():
+    model = LM("model.h5").predict(np.array([1,2,3,2,1]).reshape(1,5))
+    bob =  json.dumps(model[0].tolist())
+    return bob
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
