@@ -78,16 +78,16 @@ function createMap(markerLayers) {
 }
 
 function getColor(d) {
-  return d > 90 ? '#a50026' :
-         d > 80  ? '#d73027' :
-         d > 70  ? '#f46d43' :
-         d > 60  ? '#fdae61' :
-         d > 50   ? '#fee08b' :
-         d > 40   ? '#d9ef8b' :
-         d > 30 ? '#a6d96a' :
-         d > 20  ? '#66bd63' :
-         d > 10  ? '#1a9850' :
-                    '#006837';
+  return d > 90 ? '#006837' :
+         d > 80  ? '#1a9850'  :
+         d > 70  ? '#66bd63':
+         d > 60  ? '#a6d96a'  :
+         d > 50   ? '#d9ef8b'  :
+         d > 40   ? '#fee08b' :
+         d > 30 ? '#fdae61' :
+         d > 20  ?  '#f46d43' :
+         d > 10  ? '#d73027' :
+                  '#a50026' ;
 }
 
 function findScore(i, location) {
