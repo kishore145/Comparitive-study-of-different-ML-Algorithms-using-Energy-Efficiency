@@ -35,6 +35,9 @@ function seti(index) {
         console.log(data);
       }
     }
+    y_selected = [data["score"], data["LR Score"]].map(Math.round);
+    y_mean = [sum["ENERGY STAR Score"]/response.length,
+    sum["ENERGY STAR Score LR"]/response.length].map(Math.round);
     trace1 = {
       x: ["Actual", 
           "LR"
@@ -45,13 +48,16 @@ function seti(index) {
           // "ML3",
           // "ML4"
         ],
-      y: [data["score"], data["LR Score"]
-          // , 
-          // data["ENERGY STAR Score ML1"], data["ENERGY STAR Score ML2"],
-          // data["ENERGY STAR Score ML3"], data["ENERGY STAR Score ML4"]
-        ],
+      y: y_selected,
+      text: y_selected.map(String),
+      textposition: 'auto',
+      hoverinfo: 'none',
       name: 'Selected Property',
-      type: 'bar'
+      type: 'bar',
+      marker: {
+        color: 'rgb(55, 83, 109)',
+        opacity: 1,
+      }
     };
     trace2 = {
       x: ["Actual", "LR"
@@ -61,25 +67,42 @@ function seti(index) {
       // "ML3",
       // "ML4"
       ],
-      y: [sum["ENERGY STAR Score"]/response.length,
-        sum["ENERGY STAR Score LR"]/response.length
-        // , 
-        // sum["ENERGY STAR Score ML1"]/response.length,
-        // sum["ENERGY STAR Score ML2"]/response.length,
-        // sum["ENERGY STAR Score ML3"]/response.length,
-        // sum["ENERGY STAR Score ML4"]/response.length
-      ],
+      y: y_mean,
+      text: y_mean.map(String),
+      textposition: 'auto',
+      hoverinfo: 'none',
       name: 'Mean Value',
-      type: 'bar'
+      type: 'bar',
+      marker: {
+        color: 'rgb(26, 118, 255)',
+        //color: 'rgb(204,204,204)',
+        opacity: 1
+      }
 
     }
     const layout = {
       showlegend: true,
       legend: {"orientation": "h"},
       title: `Energy Star Score prediction from different ML algorithms`,
+      xaxis: {tickfont: {
+        size: 14,
+        color: 'rgb(107, 107, 107)'
+      }},
       yaxis: {
-        title: 'Energy Star Score'
-      }
+        title: 'Energy Star Score',
+        titlefont: {
+          size: 16,
+          color: 'rgb(107, 107, 107)'
+        },
+        tickfont: {
+          size: 14,
+          color: 'rgb(107, 107, 107)'
+        }
+      },
+      barmode: 'group',
+      bargroupgap: 0.1
+
+
     };
     console.log(i);
       traces = [trace1, trace2];
