@@ -81,10 +81,10 @@ function seti(index) {
         title: 'Energy Star Score'
       }
     };
-    //console.log(trace1);
-    traces = [trace1, trace2];
-  Plotly.newPlot('viz2', traces,layout);
-}
+    console.log(i);
+      traces = [trace1, trace2];
+      Plotly.newPlot('viz2', traces,layout);
+    }
 
 // function graph2(response) {
 //   // Loop through the data
