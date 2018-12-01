@@ -1,0 +1,7 @@
+,model,R2
+0,Linear Regression,0.6917447166155224
+1,Support Vector Machine,0.7841366144234487
+2,Random Forest,0.7677302622069155
+3,Gradient Boosted,0.7861395796584331
+4,k-Nearest Neighbors,0.660858287307092
+5,Decision Tree,0.7399975598962389

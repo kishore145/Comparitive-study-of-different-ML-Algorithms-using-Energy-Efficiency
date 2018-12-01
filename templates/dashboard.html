@@ -6,12 +6,13 @@
 	<section id='pageContent'>
 		<h1>Dashboard</h1>
 		<br>
-		<h4>Click a circle! Each circle represents a property from our dataset. The graph on the right shows the property's relationship to the average of select metrics.</h4>
+		<h4>Click a circle! Each circle represents a property from our dataset. The graph on the right shows the Observed vs Predicted Energy Star Score</h4>
 		<hr>
 		<main>
 			<div id="viz1" style="float: left; width: 45%; height: 650px;"></div>
 			
-			<div id="viz2" style="float: right; width: 55%; height: 650px; background-color: white;" ></div>
+			<div id="viz2" style="float: right; width: 55%; height: 650px; " ></div>
+			
 
 			<div id="viz3" style="float: down; width: 45%; height: 650px;"></div>
 
@@ -43,6 +44,7 @@
 	<!-- viz1 and viz2 JavaScript -->
 	<script type="text/javascript" src="static/js/viz1logic.js"></script>
 	<script type="text/javascript" src="static/js/viz2logic.js"></script>
+	<script type="text/javascript" src="static/js/viz3logic.js"></script>
 
 
 {% endblock content%}
