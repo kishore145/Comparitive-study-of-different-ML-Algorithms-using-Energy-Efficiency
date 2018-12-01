@@ -13,9 +13,7 @@ var predict = () => {
     $.get("/python-model",(e)=>{
 
         text.innerHTML = "10"+JSON.parse(e)[0]
-
     })
-
 }
 
 

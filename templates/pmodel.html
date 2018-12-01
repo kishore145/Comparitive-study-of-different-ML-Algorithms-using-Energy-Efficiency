@@ -5,26 +5,36 @@
 <script type="text/javascript" src="static/js/ystar.js"></script>
 
 <section id='pageContent'>
-    <div class="slidecontainer" id="slider1">
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange1">
+    <div style="float: right; width: 50%;">
+        <div class="slidecontainer" id="slider1">
+            <input type="range" min="1818" max="2018" value="1918" class="slider" id="myRange1">
+        </div>
+        <div class="slidecontainer" id="slider2">
+            <input type="range" min="0" max="87000" value="50" class="slider" id="myRange2">
+        </div>
+        <div class="slidecontainer" id="slider3">
+            <input type="range" min="1" max="1000000" value="50" class="slider" id="myRange3">
+        </div>
+        <div class="slidecontainer" id="slider4">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange4">
+        </div>
+        <div class="slidecontainer" id="slider5">
+            <input type="range" min="1" max="500000000" value="50" class="slider" id="myRange5">
+        </div>
     </div>
-    <div class="slidecontainer" id="slider2">
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange2">
+    <div style="float: left; width: 50%;">
+        <ul>
+            <li>"Year Built"</li>
+            <li> "Site EUI (kBtu/ft^2)"</li>
+            <li>"Weather Normalized Site EUI (kBtu/ft^2)"</li>
+            <li>"Occupancy"</li>
+            <li>"Weather Normalized Site Electricity Intensity (kWh/ft^2)"]</li>
+        </ul>
+        <b>YOUR PREDICTED ENERGY SCORE IS</b>
+        <div id="text"></div>
     </div>
-    <div class="slidecontainer" id="slider3">
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange3">
-    </div>
-    <div class="slidecontainer" id="slider4">
-        <input type="range" min="1" max="10" value="5" class="slider" id="myRange4">
-    </div>
-    <div class="slidecontainer" id="slider5">
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange5">
-    </div>
-    <div>
-        YOUR PREDICTED ENERGY SCORE IS
-    </div>
-    <div id="text">
-    </div>
+    <div class="clearfix"></div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="static/js/pmodel.js"></script>
 </section>
