@@ -37,13 +37,13 @@ function createMap(markerLayers) {
     
   // Overlays for different Machine Learning Energy Scores  
   var overlayMaps = {
-    "Actual Energy Scores": markerLayers[0],
-    "LR Energy Scores": markerLayers[1]
-    // ,
-    // "ML1 Energy Scores": markerLayers[2],
-    // "ML2 Energy Scores": markerLayers[3],
-    // "ML3 Energy Scores": markerLayers[4],
-    // "ML4 Energy Scores": markerLayers[5]
+    "Observed": markerLayers[0],
+    "LR": markerLayers[1],
+    "SVM": markerLayers[2],
+    "RF": markerLayers[3],
+    "GB": markerLayers[4],
+    "KNN": markerLayers[5],
+    "DT": markerLayers[6]
   };
 
   // Grab the div id and insert all the layers
@@ -70,10 +70,12 @@ function createMap(markerLayers) {
   legend.addTo(map);
 
   L.control.layers(baseMaps, overlayMaps, {collapsed: true}).addTo(map);
-
+  
   
   
 }
+
+
 
 function getColor(d) {
   return d > 90 ? '#006837' :
@@ -94,27 +96,31 @@ function findScore(i, location) {
       return getColor(location["score"]);
       break;
     case 1 :
-      return getColor(location["LR Score"]);
+      return getColor(location["lr_score"]);
       break;
-    // case 2 :
-    //   return getColor(location["ENERGY STAR Score ML1"]);
-    //   break;
-    // case 3 :
-    //   return getColor(location["ENERGY STAR Score ML2"]);
-    //   break;
-    // case 4 :
-    //   return getColor(location["ENERGY STAR Score ML3"]);
-    //   break;
-    // case 5 :
-    //   return getColor(location["ENERGY STAR Score ML4"]);
-    //   break;
+    case 2 :
+      return getColor(location["svm_score"]);
+      break;
+    case 3 :
+      return getColor(location["random_forest_score"]);
+      break;
+    case 4 :
+      return getColor(location["gb_score"]);
+      break;
+    case 5 :
+      return getColor(location["knn_score"]);
+      break;
+    case 6 :
+      return getColor(location["dt_score"]);
+      break;
   }
 }
 
 function createMarkers(response) {
+  //image();
 
   // Initialize an array to hold property markers
-  var propertyMarkers = [[],[]/*,[],[],[],[]*/];
+  var propertyMarkers = [[],[],[],[],[],[],[]];
   console.log(response);
   var circle=[];
   
@@ -130,7 +136,7 @@ function createMarkers(response) {
     if(!location.Latitude || !location.Longitude) {
       continue;
     }
-    for(i =0;i<=1;i++) {
+    for(i =0;i<=6;i++) {
       circle[i] = L.circle([location.Latitude, location.Longitude], {
         color: 'black' , 
         weight: 0.1,
@@ -149,7 +155,7 @@ function createMarkers(response) {
     }
   }
   var markerLayers =[];
-  for(i = 0; i<=1; i++) {
+  for(i = 0; i<=6; i++) {
     markerLayers.push(L.featureGroup(propertyMarkers[i])
     .on('click', function(event) { 
       console.log(event);

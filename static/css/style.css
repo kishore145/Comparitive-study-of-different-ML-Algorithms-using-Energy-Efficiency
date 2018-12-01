@@ -223,3 +223,8 @@ section {
     background: #4CAF50; /* Green background */
     cursor: pointer; /* Cursor on hover */
 }
+.img.picture {
+    height: 50%;
+    width: 50%;
+
+}
